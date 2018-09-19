@@ -56,10 +56,10 @@ googleAnalytics = "c7442f5794ea2abb71c6ff05dc0b8779"
 	weight = 100
 
 [[menu.main]]
-	name   = "安装"
-	identifier = "installation"
-	url    = "installation/"
-	weight = 200
+	name   = "BPF"
+	identifier = "bpf"
+	url    = "bpf/"
+	weight = 300
 
 [blackfriday]
 	smartypants	= true
