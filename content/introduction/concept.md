@@ -78,6 +78,55 @@ Cilium能够探测Linux内核的可用功能，并在检测到它们时自动使
 
 ## 术语
 
+### Labels
+
+ 标签是一种通用，灵活且高度可扩展的方式，用于处理大量资源，因为它们允许任意分组和创建集合。 每当需要描述，寻址或选择某些内容时，都会根据标签完成：
+
+- [Endpoint](#endpoints) 在被从容器运行时，编排系统，或者其他源派生时分配标签。
+- [Network Policy](#network-policies) 选择 [Endpoint](#endpoints) 对，这些端点对被容许基于标签相互通讯。策略本身也由标签标示。
+
+#### Label是什么?
+
+A label is a pair of strings consisting of a `key` and `value`. A label can be formatted as a single string with the format `key=value`. The key portion is mandatory and must be unique. This is typically achieved by using the reverse domain name notion, e.g. `io.cilium.mykey=myvalue`. The value portion is optional and can be omitted, e.g. `io.cilium.mykey`.
+
+标签是一对由`key`和`value`组成的字符串。 标签可以格式化为单个字符串，格式为`key=value`。 key部分是强制性的，必须是唯一的。通常通过使用反向域名概念来实现，例如，`io.cilium.mykey=myvalue`。 value部分是可选的，可以省略，例如，`io.cilium.mykey`。
+
+key名通常应由字符集`[a-z0-9-.]`组成。
+
+使用标签选择资源时，key和value必须匹配，例如当策略应该应用于标签为`my.corp.foo`的所有端点时，标签`my.corp.foo=bar`将与选择器不匹配。
+
+#### Label Source
+
+标签可以来自各种来源。 例如，端点将由本地容器运行时派生与容器关联的标签，以及Kubernetes提供的与pod关联的标签。 由于这两个标签命名空间彼此不了解，这可能导致标签key冲突。
+
+To resolve this potential conflict, Cilium prefixes all label keys with `source:` to indicate the source of the label when importing labels, e.g. `k8s:role=frontend`, `container:user=joe`, `k8s:role=backend`. This means that when you run a Docker container using `docker run [...] -l foo=bar`, the label `container:foo=bar` will appear on the Cilium endpoint representing the container. Similarly, a Kubernetes pod started with the label `foo: bar` will be represented with a Cilium endpoint associated with the label `k8s:foo=bar`. A unique name is allocated for each potential source. The following label sources are currently supported:
+
+为了解决这种潜在的冲突，Cilium在所有标签key前加上`source:` 以指示导入标签时标签的来源，例如： `k8s:role=frontend`，`container:user=joe`，`k8s:role=backend`。 这意味着当您使用`docker run [...] -l foo=bar`运行Docker容器时，标签`container:foo=bar`将出现在表示容器的Cilium端点上。 类似地，以标签 `foo: bar`开始的Kubernetes pod将用与标签`k8s:foo=bar`相关联的Cilium端点表示。 为每个潜在来源分配唯一名称。 目前支持以下标签来源：
+
+- `container:` 用于从本地容器运行时派生的标签
+- `k8s:` 来自Kubernetes的标签
+- `mesos:` 用于从Mesos派生的标签
+- `reserved:` 有关特殊保留标签，请参阅 [Special Identities](#reserved-labels).
+- `unspec:` 用于具有未指定源的标签
+
+使用标签标识其他资源时，可以包含源以限制标签与特定类型的匹配。 如果未提供源，则标签源默认为`any:`将匹配所有标签，无论其来源如何。 如果提供了源，则选择和匹配标签的来源需要匹配。
+
+### Endpoint
+
+Cilium通过分配IP地址使应用程序容器在网络上可用。多个应用程序容器可以共享相同的IP地址; 这个模型的一个典型例子是Kubernetes [`Pod`](#term-pod)。 共享公共地址的所有应用程序容器在Cilium所指的端点中组合在一起。
+
+
+
+
+
+
+
+
+
+
+
+
+
 TBD
 
 > 备注：以上内容来自cilium官方文档 [Concepts](https://cilium.readthedocs.io/en/v1.2/concepts/)
