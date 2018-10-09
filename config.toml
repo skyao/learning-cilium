@@ -1,16 +1,22 @@
 baseurl = "http://localhost:1313/"
 languageCode = "en-us"
+uglyurls = true
+relativeURLs = true
 title = "Cilium学习笔记"
 theme = "hugo-material-docs"
 metadataformat = "yaml"
 canonifyurls = true
+preserveTaxonomyNames = true
+disablePathToLower = true
+
 # Enable Google Analytics by entering your tracking id
 googleAnalytics = "c7442f5794ea2abb71c6ff05dc0b8779"
 
 [params]
 	# General information
 	author = "敖小剑"
-	description = "Cilium学习笔记"
+	keywords = "cilium,BPF,eBPF,学习笔记,敖小剑"
+	description = "Cilium是一个开源软件，用于透明地提供和保护使用Kubernetes，Docker和Mesos等Linux容器管理平台部署的应用程序服务之间的网络和API连接。"
 	copyright = "版权所有，转载请注明出处"
 
 	# Repository
@@ -52,13 +58,13 @@ googleAnalytics = "c7442f5794ea2abb71c6ff05dc0b8779"
 [[menu.main]]
 	name   = "介绍"
 	identifier = "introduction"
-	url    = "introduction/"
+	url    = "/introduction/"
 	weight = 100
 
 [[menu.main]]
 	name   = "BPF"
 	identifier = "bpf"
-	url    = "bpf/"
+	url    = "/bpf/"
 	weight = 300
 
 [blackfriday]

@@ -5,6 +5,11 @@ weight: 320
 menu:
   main:
     parent: "bpf"
+keywords:
+- BPF
+- XDP
+- Reference
+description : "BPF和XDP参考指南中文翻译"
 ---
 
 > 说明：

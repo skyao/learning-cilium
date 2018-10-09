@@ -5,6 +5,12 @@ weight: 110
 menu:
   main:
     parent: "introduction"
+keywords:
+- cilium资料
+- cilium官方资料
+- cilium社区资料
+- cilium学习资料
+description : "收集Cilium的各种资料"
 ---
 
 ## 官方资料

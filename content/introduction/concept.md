@@ -5,6 +5,12 @@ weight: 102
 menu:
   main:
     parent: "introduction"
+keywords:
+- cilium组件
+- cilium部署模型
+- cilium术语
+- cilium概念
+description : "详细介绍Cilium组件，部署模型，术语和概念"
 ---
 
 本文档的目标是描述Cilium架构的组件，以及在数据中心或云环境中部署Cilium的不同模型。 它侧重于运行完整的Cilium部署所需的更高级别的理解。然后，您可以使用更详细的安装指南来了解设置Cilium的详细信息。

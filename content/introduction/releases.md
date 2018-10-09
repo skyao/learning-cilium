@@ -5,6 +5,11 @@ weight: 112
 menu:
   main:
     parent: "introduction"
+keywords:
+- cilium版本信息
+- cilium最新版本
+- cilium release note
+description : "收集Cilium各个发布版本的信息和Release Note"
 ---
 
 ## v1.2
