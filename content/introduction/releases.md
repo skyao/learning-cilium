@@ -12,6 +12,53 @@ keywords:
 description : "收集Cilium各个发布版本的信息和Release Note"
 ---
 
+## v1.3
+
+发布于2018-10-23。
+
+官方博客文章：
+
+- [Cilium 1.3: Go extensions for Envoy, Cassandra & Memcached Support](https://cilium.io/blog/2018/10/23/cilium-13-envoy-go/)
+
+1.3 Release Highlights:
+
+- **Go extensions for Envoy**
+	- Exciting new extension API for Envoy using Go including a generic configuration and access logging API. (Beta)
+- **Cassandra & Memcached protocol support**
+	- New protocol parsers for Cassandra and Memcached implemented using the new Envoy Go extensions. Both parsers provide visibility and security policy enforcement on operation type and key/table names using exact matches, prefix matches, and regular expressions. (Beta)
+- **Security**
+	- TTLs support for DNS/FQDN policy rules
+	- Introduction of well-known identities for kube-dns, coredns, and etcd-operator.
+	- New security identity "unmanaged" to represent pods which are not managed by Cilium.
+	- Improved security entity "cluster" which allows defining policies for all pods in a cluster (managed, unmanaged and host networking).
+- **Additional Metrics & Monitoring**
+	- New "cilium metrics list" command to list metrics via CLI.
+	- Lots of additional metrics: connection tracking garbage collection, Kubernetes resource events, IPAM, endpoint regenerations, services, and error and warning counters.
+	- New monitoring API with more efficient encoding/decoding protocol. Used by default with fallback for older clients.
+- **Networking Improvements**
+	- Split of connection tracking tables into TCP and non-TCP to better handle the mix of long and short-lived nature of each protocol.
+	- Ability to specify the size of the connection tracking tables via ConfigMap.
+	- Better masquerading behavior for traffic via NodePort and HostPort to allow pods to see the original source IP if possible.
+- **Full Key-value store Resiliency**
+	- Introduced ability to re-construct the kvstore contents immediately after loss of any state. Allows to restore etcd from backup or to completely wipe it for a running cluster with minimal impact. (Beta)
+- **Efficiency & Scale**
+	- Significant improvements in the cost of calculating policy of individual endpoints. Work continues on this subject.
+	- New grace period when workloads change identity to minimize connectivity impact throughout identity change.
+	- More efficient security identity allocation algorithm.
+	- New generic framework to detect and ignore Kubernetes event notifications for which Cilium does not need to take action.
+	- Improvements in avoiding unnecessary BPF compilations to reduce the CPU overhead caused by it. Initial work to scope BPF templating to avoid compilation altogether.
+- **Kubernetes**
+	- Added support for Kubernetes 1.12
+	- Custom columns for the CiliumEndpoints CRD (Requires Kubernetes 1.11)
+	- Removed cgo dependency from cilium-cni for compatibility with ulibc
+	- Removed support for Kubernetes 1.7
+- **Documentation**
+	- New Ubuntu 18.04 guide
+	- Coverage of latest BPF runtime features such as BTF (BPF Type Format).
+	- Documentation for VM/host firewall requirements to run multi-host networking.
+- **Long Term Stable (LTS) Release**
+	- 1.3 has been declared an LTS release and will be supported for the next 6 months with backports.
+
 ## v1.2
 
 发布于2018-09-21。
