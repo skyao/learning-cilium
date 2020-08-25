@@ -39,6 +39,7 @@ description : "收集Cilium的各种资料"
 
 ### 演讲视频
 
+- [How to Make Linux Microservice-Aware with Cilium and eBPF](https://www.infoq.com/presentations/linux-cilium-ebpf):  2019-04, 有中文翻译版本，[如何基于 Cilium 和 eBPF 打造可感知微服务的 Linux？](http://dockone.io/article/8789)
 - [TGI Kubernetes 047: Cilium (CNI)](https://www.youtube.com/watch?v=I8Tp7jU2oJk): 2018-08-17
 - [Cilium-Accelerating Envoy and Istio with Cilium and Linux Kernel](https://www.youtube.com/watch?v=ER9eIXL2_14): 2018-05-06
 - [Cilium + gRPC Intro - Microservices-aware Network Security](https://www.youtube.com/watch?v=-aUHGeBRDPU): 2017-12-07
